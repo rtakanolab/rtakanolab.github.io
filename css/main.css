@@ -3359,3 +3359,17 @@ input.num-product::-webkit-inner-spin-button {
 
 }
 
+.news-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-weight: bold;
+}
+
+
+.description {
+  padding-left: 1rem;
+  text-indent: -1rem;
+}

@@ -252,6 +252,10 @@
 				</h3>
 			</div>
 			<div class="news-item stext-114 cl2 p-b-26">
+				<span class="date">08/02/2024</span>
+				<span class="description">> Ryota Takano gave an invited talk at Tamagawa University</a>.
+			</div>
+			<div class="news-item stext-114 cl2 p-b-26">
 				<span class="date">06/22/2024</span>
 				<span class="description">> Ryota Takano gave an invited talk at <a href = "https://sites.google.com/site/socipsych758/%E9%81%8E%E5%8E%BB%E3%81%AE%E9%96%8B%E5%82%AC%E8%A8%98%E9%8C%B2/2024%E5%B9%B4%E5%BA%A6/2024%E5%B9%B4%E5%BA%A6%E7%AC%AC1%E5%9B%9Ensp?authuser=0" target="_blank">Nagoya Social Psychologist's Group</a>.
 			</div>
@@ -261,12 +265,43 @@
 			</div>
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
+				<a href="#" id="loadMoreBtn" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Show More
+				</a>
+				<a href="#" id="loadLessBtn" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 hidden">
+					Show Less
 				</a>
 			</div>
 		</div>
 	</section>
+
+	<script>
+		document.getElementById('loadMoreBtn').addEventListener('click', function(event) {
+			event.preventDefault(); // リンクのデフォルト動作を防ぐ
+			var hiddenItem = document.querySelector('.news-item.hidden');
+			if (hiddenItem) {
+				hiddenItem.classList.remove('hidden');
+				document.getElementById('loadMoreBtn').classList.add('hidden');
+				document.getElementById('loadLessBtn').classList.remove('hidden');
+			}
+		});
+	
+		document.getElementById('loadLessBtn').addEventListener('click', function(event) {
+			event.preventDefault(); // リンクのデフォルト動作を防ぐ
+			var lastItem = document.querySelectorAll('.news-item')[3]; // 最後のニュース項目
+			if (lastItem) {
+				lastItem.classList.add('hidden');
+				document.getElementById('loadLessBtn').classList.add('hidden');
+				document.getElementById('loadMoreBtn').classList.remove('hidden');
+			}
+		});
+	</script>
+	
+	<style>
+		.hidden {
+			display: none;
+		}
+	</style>
 
 
 	<!-- Footer -->

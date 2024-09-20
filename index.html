@@ -79,6 +79,7 @@
 								<a style="color: #006e4f;"> About Us</a>
 								<ul class="sub-menu">
 									<li><a href="about-takano.html">高野了太</a></li>
+									<li><a href="about-people.html">メンバー</a></li>
 								</ul>
 							</li>
 
@@ -87,7 +88,7 @@
 							</li>
 
 							<li>
-								<a href="link.html">Link</a>
+								<a href="links.html">Links</a>
 							</li>
 
 							<li>
@@ -147,6 +148,7 @@
 					<a style="color: white;">About Us</a>
 					<ul class="sub-menu-m">
 						<li><a href="about-takano.html">高野了太</a></li>
+						<li><a href="about-people.html">メンバー</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -158,7 +160,7 @@
 				</li>
 
 				<li>
-					<a href="link.html">Link</a>
+					<a href="links.html">Links</a>
 				</li>
 
 				<li>
@@ -216,10 +218,10 @@
 					私たちの日常は、自然災害や科学技術の進歩、AIの興隆など予測が難しい（ときに私たちの理解を超えた）事象によって絶えず変化しています。
 					これらの事象は、プラス･マイナスの両面で私たちの生活に深く影響を及ぼしています。
 					当研究室の大きな目標は、人々がこれらの変化をどのように乗り越え、融和･共生していくかを探求することです。
-					こうした問題意識を持って、心理学･認知科学の基礎研究として、個人の認知･感情から社会全体の動向に至るまで幅広いテーマを扱い、心と社会のダイナミクスを階層的に解明することを目指しています。
+					こうした問題意識を持って、各メンバーが「自分なかにある問い」を見極めながら、個人の認知･感情から社会全体の動向に至るまで幅広いテーマを扱い、心と社会のダイナミクスを階層的に解明することを目指しています。
 				</p>
 				<p class="bor16 p-l-29 p-b-15 stext-114 cl2">
-					心理学実験･調査を基本としつつ、自然言語処理、機械学習、脳機能イメージング（fMRIなど）、生理反応計測（SCR、瞳孔反応など）を組み合わせた多様なアプローチを採用する点も当研究室の特色です。
+					理論的考察に基づく心理学実験･調査を基本としつつ、自然言語処理、機械学習、脳機能イメージング（fMRIなど）、生理反応計測（SCR、心拍、視線・瞳孔反応など）を組み合わせたデータ駆動型のアプローチを採用する点も当研究室の特色です。
 				</p>
 				<p class="bor16 p-l-29 stext-114 cl2">
 					現在は、畏敬･畏怖の構造と機能（大自然や宇宙など理解を超越した刺激に対して生じる感情反応）、ナラティブの創発過程（ストーリー性のある情報が人々の認識をどう収束するか）、宗教性･スピリチュアリティと社会性・政治的イデオロギーとの関係などのテーマを対象としています。
@@ -287,26 +289,37 @@
 	</section>
 
 	<script>
+		var itemsToShow = 2; // 追加で表示する項目数
+		var initialVisibleItems = 3; // 初期表示数
+	
+		// 初期設定で最初の項目だけ表示
+		var allItems = document.querySelectorAll('.news-item');
+		for (var i = initialVisibleItems; i < allItems.length; i++) {
+			allItems[i].classList.add('hidden');
+		}
+	
 		document.getElementById('loadMoreBtn').addEventListener('click', function(event) {
-			event.preventDefault(); // リンクのデフォルト動作を防ぐ
-			var hiddenItem = document.querySelector('.news-item.hidden');
-			if (hiddenItem) {
-				hiddenItem.classList.remove('hidden');
+			event.preventDefault();
+			var hiddenItems = document.querySelectorAll('.news-item.hidden');
+			for (var i = 0; i < itemsToShow && i < hiddenItems.length; i++) {
+				hiddenItems[i].classList.remove('hidden');
+			}
+			if (document.querySelectorAll('.news-item.hidden').length === 0) {
 				document.getElementById('loadMoreBtn').classList.add('hidden');
 				document.getElementById('loadLessBtn').classList.remove('hidden');
 			}
 		});
 	
 		document.getElementById('loadLessBtn').addEventListener('click', function(event) {
-			event.preventDefault(); // リンクのデフォルト動作を防ぐ
-			var lastItem = document.querySelectorAll('.news-item')[3]; // 最後のニュース項目
-			if (lastItem) {
-				lastItem.classList.add('hidden');
-				document.getElementById('loadLessBtn').classList.add('hidden');
-				document.getElementById('loadMoreBtn').classList.remove('hidden');
+			event.preventDefault();
+			for (var i = initialVisibleItems; i < allItems.length; i++) {
+				allItems[i].classList.add('hidden');
 			}
+			document.getElementById('loadLessBtn').classList.add('hidden');
+			document.getElementById('loadMoreBtn').classList.remove('hidden');
 		});
 	</script>
+	
 	
 	<style>
 		.hidden {
